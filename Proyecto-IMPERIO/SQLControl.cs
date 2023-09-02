@@ -11,7 +11,7 @@ namespace Proyecto_IMPERIO
 {
     internal class SQLControl
     {
-        private SqlConnection cnn =
+        public SqlConnection cnn =
             new SqlConnection(@"Server=DESKTOP-6PGHB34;Database=IMPERIO;Integrated Security=True");
 
         public int login(string usuario, string pass)

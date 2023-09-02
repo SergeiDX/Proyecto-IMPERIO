@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Proyecto_IMPERIO
 {
@@ -32,6 +33,18 @@ namespace Proyecto_IMPERIO
             {
                 MessageBox.Show("Usuario o Contraseña incorrectos.");
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CRUDusuarios cRUDusuarios = new CRUDusuarios();
+            cRUDusuarios.Show();
+            this.Hide();
         }
     }
 }
