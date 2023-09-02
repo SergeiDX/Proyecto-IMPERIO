@@ -38,6 +38,7 @@ namespace Proyecto_IMPERIO
             {
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Usuario agregado correctamente.");
+                LlenarCampos();
             }
             catch (SqlException EX)
             {
@@ -45,9 +46,7 @@ namespace Proyecto_IMPERIO
                 throw;
             }
             SQLControl.cnn.Close();
-            txtnombre.Clear();
-            txtusuario.Clear();
-            txtpass.Clear();
+            LimpiarCampos();
         }
 
         public void ActualizarUsuario()
@@ -63,6 +62,7 @@ namespace Proyecto_IMPERIO
             {
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Usuario actualizado correctamente.");
+                LlenarCampos();
             }
             catch (SqlException EX)
             {
@@ -70,9 +70,7 @@ namespace Proyecto_IMPERIO
                 throw;
             }
             SQLControl.cnn.Close();
-            txtnombre.Clear();
-            txtusuario.Clear();
-            txtpass.Clear();
+            LimpiarCampos();
         }
 
         public void EliminarUsuario()
@@ -86,6 +84,7 @@ namespace Proyecto_IMPERIO
             {
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Usuario eliminado correctamente.");
+                LlenarCampos();
             }
             catch (SqlException EX)
             {
@@ -93,6 +92,11 @@ namespace Proyecto_IMPERIO
                 throw;
             }
             SQLControl.cnn.Close();
+            LimpiarCampos();
+        }
+
+        public void LimpiarCampos()
+        {
             txtnombre.Clear();
             txtusuario.Clear();
             txtpass.Clear();
@@ -111,6 +115,26 @@ namespace Proyecto_IMPERIO
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             EliminarUsuario();
+        }
+
+        public void LlenarCampos()
+        {
+            string consulta = "select * from usuarios";
+            SqlDataAdapter adaptador = new SqlDataAdapter(consulta, SQLControl.cnn);
+            DataTable dt = new DataTable();
+            adaptador.Fill(dt);
+            dataGridView1.DataSource = dt;
+        }
+        private void CRUDusuarios_Load(object sender, EventArgs e)
+        {
+            LlenarCampos();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtnombre.Text = dataGridView1.SelectedCells[1].Value.ToString();
+            txtusuario.Text = dataGridView1.SelectedCells[2].Value.ToString();
+            txtpass.Text = dataGridView1.SelectedCells[3].Value.ToString();
         }
     }
 }
