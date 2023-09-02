@@ -34,7 +34,7 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnAgregarUsuario = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +57,6 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(241, 155);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(164, 22);
             this.txtPassword.TabIndex = 2;
             // 
@@ -89,22 +88,21 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Contraseña";
             // 
-            // btnAgregarUsuario
+            // button1
             // 
-            this.btnAgregarUsuario.Location = new System.Drawing.Point(66, 205);
-            this.btnAgregarUsuario.Name = "btnAgregarUsuario";
-            this.btnAgregarUsuario.Size = new System.Drawing.Size(139, 30);
-            this.btnAgregarUsuario.TabIndex = 6;
-            this.btnAgregarUsuario.Text = "Agregar Usuario";
-            this.btnAgregarUsuario.UseVisualStyleBackColor = true;
-            this.btnAgregarUsuario.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Location = new System.Drawing.Point(66, 205);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Ingresar";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(548, 247);
-            this.Controls.Add(this.btnAgregarUsuario);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnIngresar);
@@ -114,7 +112,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,7 +125,7 @@
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnAgregarUsuario;
+        private System.Windows.Forms.Button button1;
     }
 }
 

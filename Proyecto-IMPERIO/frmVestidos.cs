@@ -12,16 +12,9 @@ namespace Proyecto_IMPERIO
 {
     public partial class frmVestidos : Form
     {
-        Form1 frm = new Form1 ();
         public frmVestidos()
         {
             InitializeComponent();
-        }
-
-        private void frmVestidos_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Close();
-            frm.Show();
         }
     }
 }
