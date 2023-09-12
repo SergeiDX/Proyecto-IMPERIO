@@ -54,7 +54,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 55);
+            this.label2.Location = new System.Drawing.Point(38, 246);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // txtnombre
             // 
-            this.txtnombre.Location = new System.Drawing.Point(119, 52);
+            this.txtnombre.Location = new System.Drawing.Point(119, 243);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(361, 22);
             this.txtnombre.TabIndex = 10;
@@ -147,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 242);
+            this.ClientSize = new System.Drawing.Size(1052, 228);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnActualizar);

@@ -44,6 +44,7 @@ namespace Proyecto_IMPERIO
         {
             CRUDusuarios cRUDusuarios = new CRUDusuarios();
             cRUDusuarios.Show();
+            Form1 form = new Form1();
             this.Hide();
         }
     }

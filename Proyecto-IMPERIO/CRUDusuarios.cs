@@ -25,38 +25,60 @@ namespace Proyecto_IMPERIO
             form1.Show();
             this.Close();
         }
+        
+        public bool ExisteUsuario(string usuario)
+        {
+            string query = "select * from usuario where nombre = @n";
+            SQLControl.cnn.Open();
+
+            SqlCommand cmd = new SqlCommand(query, SQLControl.cnn);
+            cmd.Parameters.AddWithValue("@n", usuario);
+            DataTable resultado = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(resultado);
+
+            SQLControl.cnn.Close();
+            return resultado.Rows.Count != 0;
+        }
+
         public void AgregarUsuario()
         {
-            SQLControl.cnn.Open();
-            SqlCommand cmd = new SqlCommand("spAgregarUsuario", SQLControl.cnn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nombre", txtnombre.Text);
-            cmd.Parameters.AddWithValue("@usuario", txtusuario.Text);
-            cmd.Parameters.AddWithValue("@pass", txtpass.Text);
 
-            try
+            if (!ExisteUsuario(txtusuario.Text))
             {
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Usuario agregado correctamente.");
-                LlenarCampos();
+                SQLControl.cnn.Open();
+                SqlCommand cmd = new SqlCommand("Agregar_Usuario", SQLControl.cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@nombre", txtnombre.Text);
+                cmd.Parameters.AddWithValue("@Nombre", txtusuario.Text);
+                cmd.Parameters.AddWithValue("Contrasenia", txtpass.Text);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Usuario agregado correctamente.");
+                    LlenarCampos();
+                }
+                catch (SqlException EX)
+                {
+                    MessageBox.Show(EX.ToString());
+                    throw;
+                }
+                SQLControl.cnn.Close();
+                LimpiarCampos();
             }
-            catch (SqlException EX)
-            {
-                MessageBox.Show(EX.ToString());
-                throw;
-            }
-            SQLControl.cnn.Close();
-            LimpiarCampos();
+            else
+                MessageBox.Show("Ya existe un usuario con ese nombre");
         }
 
         public void ActualizarUsuario()
         {
             SQLControl.cnn.Open();
-            SqlCommand cmd = new SqlCommand("spActualizarUsuario", SQLControl.cnn);
+            SqlCommand cmd = new SqlCommand("Actualizar_Usuario", SQLControl.cnn);
             cmd.CommandType= CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@usuario", txtusuario.Text);
-            cmd.Parameters.AddWithValue("@nombre", txtnombre.Text);
-            cmd.Parameters.AddWithValue("@pass", txtpass.Text);
+            cmd.Parameters.AddWithValue("@Id_usuario", txtnombre.Text);
+            cmd.Parameters.AddWithValue("@Nombre", txtusuario.Text);
+            cmd.Parameters.AddWithValue("@Contrasenia", txtpass.Text);
 
             try
             {
@@ -76,9 +98,9 @@ namespace Proyecto_IMPERIO
         public void EliminarUsuario()
         {
             SQLControl.cnn.Open();
-            SqlCommand cmd = new SqlCommand("spEliminarUsuario",SQLControl.cnn);
+            SqlCommand cmd = new SqlCommand("Borrar_Usuario",SQLControl.cnn);
             cmd.CommandType=CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@usuario",txtusuario.Text);
+            cmd.Parameters.AddWithValue("@Id_usuario",txtnombre.Text);
 
             try
             {
@@ -119,7 +141,7 @@ namespace Proyecto_IMPERIO
 
         public void LlenarCampos()
         {
-            string consulta = "select * from usuarios";
+            string consulta = "select * from Usuario";
             SqlDataAdapter adaptador = new SqlDataAdapter(consulta, SQLControl.cnn);
             DataTable dt = new DataTable();
             adaptador.Fill(dt);
@@ -132,9 +154,9 @@ namespace Proyecto_IMPERIO
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtnombre.Text = dataGridView1.SelectedCells[1].Value.ToString();
-            txtusuario.Text = dataGridView1.SelectedCells[2].Value.ToString();
-            txtpass.Text = dataGridView1.SelectedCells[3].Value.ToString();
+            txtnombre.Text = dataGridView1.SelectedCells[0].Value.ToString();
+            txtusuario.Text = dataGridView1.SelectedCells[1].Value.ToString();
+            txtpass.Text = dataGridView1.SelectedCells[2].Value.ToString();
         }
     }
 }
