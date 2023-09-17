@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Proyecto_IMPERIO
 {
-    public partial class CRUDusuarios : Form
+    public partial class frmCRUDusuarios : Form
     {
+        frmLogin login;
         SQLControl SQLControl = new SQLControl();
-        public CRUDusuarios()
+        public frmCRUDusuarios(frmLogin login)
         {
+            this.login = login;
             InitializeComponent();
         }
 
         private void CRUDusuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Close();
+            login.Show();
         }
         
         public bool ExisteUsuario(string usuario)
@@ -145,7 +139,7 @@ namespace Proyecto_IMPERIO
             SqlDataAdapter adaptador = new SqlDataAdapter(consulta, SQLControl.cnn);
             DataTable dt = new DataTable();
             adaptador.Fill(dt);
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource =  dt;
         }
         private void CRUDusuarios_Load(object sender, EventArgs e)
         {
