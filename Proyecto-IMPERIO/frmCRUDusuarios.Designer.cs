@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_IMPERIO
 {
-    partial class CRUDusuarios
+    partial class frmCRUDusuarios
     {
         /// <summary>
         /// Required designer variable.

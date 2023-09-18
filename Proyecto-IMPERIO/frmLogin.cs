@@ -11,10 +11,10 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Proyecto_IMPERIO
 {
-    public partial class Form1 : Form
+    public partial class frmLogin : Form
     {
         SQLControl sqLControl = new SQLControl();
-        public Form1()
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -25,9 +25,9 @@ namespace Proyecto_IMPERIO
 
             if (resultado == 1)
             {
-                frmVestidos vestidos = new frmVestidos();
-                this.Hide();
-                vestidos.ShowDialog();
+                frmMenu menu = new frmMenu();
+                Hide();
+                menu.Show();
             }
             else if (resultado == 0)
             {
@@ -42,10 +42,9 @@ namespace Proyecto_IMPERIO
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CRUDusuarios cRUDusuarios = new CRUDusuarios();
+            frmCRUDusuarios cRUDusuarios = new frmCRUDusuarios(this);
             cRUDusuarios.Show();
-            Form1 form = new Form1();
-            this.Hide();
+            Hide();
         }
     }
 }
