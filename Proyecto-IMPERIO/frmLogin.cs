@@ -46,5 +46,12 @@ namespace Proyecto_IMPERIO
             cRUDusuarios.Show();
             Hide();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmVenta frmVenta = new frmVenta();
+            frmVenta.Show();
+            Hide();
+        }
     }
 }

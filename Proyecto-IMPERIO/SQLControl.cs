@@ -12,7 +12,7 @@ namespace Proyecto_IMPERIO
     internal class SQLControl
     {
         public SqlConnection cnn =
-            new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Imperio_Vestidos;Integrated Security=True");
+            new SqlConnection(@"Server=DESKTOP-6PGHB34;Database=Imperio_Vestidos;Integrated Security=True");
 
 
         public DataTable Query(string query)

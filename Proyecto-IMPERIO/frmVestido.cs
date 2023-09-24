@@ -74,5 +74,10 @@ namespace Proyecto_IMPERIO
                 Close();
             }
         }
+
+        private void frmVestido_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
