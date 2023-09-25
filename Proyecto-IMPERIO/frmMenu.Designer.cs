@@ -32,14 +32,19 @@
             this.vestidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarVestidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaDeVestidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaNotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaDeNotasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuCrudVestidos1 = new Proyecto_IMPERIO.cuCrudVestidos();
+            this.cuPuntoVenta1 = new Proyecto_IMPERIO.cuPuntoVenta();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMenu
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.vestidosToolStripMenuItem});
+            this.vestidosToolStripMenuItem,
+            this.notasToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(888, 24);
@@ -58,23 +63,52 @@
             // agregarVestidoToolStripMenuItem
             // 
             this.agregarVestidoToolStripMenuItem.Name = "agregarVestidoToolStripMenuItem";
-            this.agregarVestidoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarVestidoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.agregarVestidoToolStripMenuItem.Text = "Agregar Vestido";
             this.agregarVestidoToolStripMenuItem.Click += new System.EventHandler(this.agregarVestidoToolStripMenuItem_Click);
             // 
             // listaDeVestidosToolStripMenuItem
             // 
             this.listaDeVestidosToolStripMenuItem.Name = "listaDeVestidosToolStripMenuItem";
-            this.listaDeVestidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.listaDeVestidosToolStripMenuItem.Text = "Lista de Vestidos";
+            this.listaDeVestidosToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.listaDeVestidosToolStripMenuItem.Text = "Inventario";
             this.listaDeVestidosToolStripMenuItem.Click += new System.EventHandler(this.listaDeVestidosToolStripMenuItem_Click);
+            // 
+            // notasToolStripMenuItem
+            // 
+            this.notasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaNotaToolStripMenuItem,
+            this.listaDeNotasToolStripMenuItem});
+            this.notasToolStripMenuItem.Name = "notasToolStripMenuItem";
+            this.notasToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.notasToolStripMenuItem.Text = "Notas";
+            // 
+            // nuevaNotaToolStripMenuItem
+            // 
+            this.nuevaNotaToolStripMenuItem.Name = "nuevaNotaToolStripMenuItem";
+            this.nuevaNotaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nuevaNotaToolStripMenuItem.Text = "Nueva Nota";
+            this.nuevaNotaToolStripMenuItem.Click += new System.EventHandler(this.nuevaNotaToolStripMenuItem_Click);
+            // 
+            // listaDeNotasToolStripMenuItem
+            // 
+            this.listaDeNotasToolStripMenuItem.Name = "listaDeNotasToolStripMenuItem";
+            this.listaDeNotasToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.listaDeNotasToolStripMenuItem.Text = "Lista de Notas";
             // 
             // cuCrudVestidos1
             // 
-            this.cuCrudVestidos1.Location = new System.Drawing.Point(12, 27);
+            this.cuCrudVestidos1.Location = new System.Drawing.Point(6, 27);
             this.cuCrudVestidos1.Name = "cuCrudVestidos1";
             this.cuCrudVestidos1.Size = new System.Drawing.Size(870, 485);
             this.cuCrudVestidos1.TabIndex = 1;
+            // 
+            // cuPuntoVenta1
+            // 
+            this.cuPuntoVenta1.Location = new System.Drawing.Point(6, 27);
+            this.cuPuntoVenta1.Name = "cuPuntoVenta1";
+            this.cuPuntoVenta1.Size = new System.Drawing.Size(870, 485);
+            this.cuPuntoVenta1.TabIndex = 1;
             // 
             // frmMenu
             // 
@@ -82,6 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 514);
             this.Controls.Add(this.cuCrudVestidos1);
+            this.Controls.Add(this.cuPuntoVenta1);
             this.Controls.Add(this.msMenu);
             this.MainMenuStrip = this.msMenu;
             this.Name = "frmMenu";
@@ -102,5 +137,9 @@
         private System.Windows.Forms.ToolStripMenuItem agregarVestidoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaDeVestidosToolStripMenuItem;
         private cuCrudVestidos cuCrudVestidos1;
+        private System.Windows.Forms.ToolStripMenuItem notasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevaNotaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listaDeNotasToolStripMenuItem;
+        private cuPuntoVenta cuPuntoVenta1;
     }
 }

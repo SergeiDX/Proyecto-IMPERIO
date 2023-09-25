@@ -8,6 +8,7 @@ namespace Proyecto_IMPERIO
         public frmMenu()
         {
             InitializeComponent();
+            cuPuntoVenta1.BringToFront();
         }
 
         private void listaDeVestidosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -24,6 +25,11 @@ namespace Proyecto_IMPERIO
         {
             frmVestido vestido = new frmVestido(cuCrudVestidos1);
             vestido.Show();
+        }
+
+        private void nuevaNotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cuPuntoVenta1.BringToFront();
         }
     }
 }
