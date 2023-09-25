@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Proyecto_IMPERIO
@@ -24,9 +16,8 @@ namespace Proyecto_IMPERIO
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
-            PrinterSettings ps = new PrinterSettings();
-            printDocument1.PrinterSettings = ps;
+            printDocument1 = new PrintDocument();
+            printDocument1.PrinterSettings = new PrinterSettings();
             printDocument1.PrintPage += Imprimir;
             printDocument1.Print();
         }

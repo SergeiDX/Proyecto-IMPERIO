@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -12,7 +8,7 @@ namespace Proyecto_IMPERIO
     internal class SQLControl
     {
         public SqlConnection cnn =
-            new SqlConnection(@"Server=DESKTOP-6PGHB34;Database=Imperio_Vestidos;Integrated Security=True");
+            new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Imperio_Vestidos;Integrated Security=True;");
 
 
         public DataTable Query(string query)
