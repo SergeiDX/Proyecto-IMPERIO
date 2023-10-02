@@ -35,6 +35,7 @@
             this.Imagen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pNota = new System.Windows.Forms.Panel();
+            this.btnPagar = new System.Windows.Forms.Button();
             this.tbResto = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tbAnticipo = new System.Windows.Forms.TextBox();
@@ -55,9 +56,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tbCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbTotal = new System.Windows.Forms.TextBox();
-            this.btnPagar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVestidos)).BeginInit();
             this.pNota.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
@@ -150,6 +148,16 @@
             this.pNota.Size = new System.Drawing.Size(216, 485);
             this.pNota.TabIndex = 15;
             // 
+            // btnPagar
+            // 
+            this.btnPagar.Location = new System.Drawing.Point(69, 436);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(81, 42);
+            this.btnPagar.TabIndex = 22;
+            this.btnPagar.Text = "Pagar";
+            this.btnPagar.UseVisualStyleBackColor = true;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
+            // 
             // tbResto
             // 
             this.tbResto.Enabled = false;
@@ -199,11 +207,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 356);
+            this.label8.Location = new System.Drawing.Point(31, 358);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 13);
+            this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Importe";
+            this.label8.Text = "Total";
             // 
             // label7
             // 
@@ -329,41 +337,10 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Codigo";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(528, 458);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 20);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Total";
-            // 
-            // tbTotal
-            // 
-            this.tbTotal.Enabled = false;
-            this.tbTotal.Location = new System.Drawing.Point(578, 458);
-            this.tbTotal.Name = "tbTotal";
-            this.tbTotal.Size = new System.Drawing.Size(70, 20);
-            this.tbTotal.TabIndex = 18;
-            this.tbTotal.Text = "0";
-            this.tbTotal.TextChanged += new System.EventHandler(this.tbTotal_TextChanged);
-            // 
-            // btnPagar
-            // 
-            this.btnPagar.Location = new System.Drawing.Point(69, 436);
-            this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(81, 42);
-            this.btnPagar.TabIndex = 22;
-            this.btnPagar.Text = "Pagar";
-            this.btnPagar.UseVisualStyleBackColor = true;
-            // 
             // cuPuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tbTotal);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.pArticulo);
             this.Controls.Add(this.pNota);
             this.Controls.Add(this.dgvVestidos);
@@ -377,7 +354,6 @@
             this.pArticulo.ResumeLayout(false);
             this.pArticulo.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -396,8 +372,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbCliente;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Costo;

@@ -139,5 +139,64 @@ namespace Proyecto_IMPERIO
         {
             return Query("select * from Vestidos where Id_vestido=" + id).Rows.Count != 0;
         }
+
+        private int UltimaNota()
+        {
+            try
+            {
+                return Convert.ToInt32(Query("select max(Id_nota) as Ultimo from Nota").Rows[0][0])+1;
+            }
+            catch (Exception ex)
+            {
+                return 1;     
+            }
+        }
+
+        public void RegistrarNota(string cliente,string telefono,decimal descuento,DateTime renta,DateTime evento,string costo,string anticipo,string resto,int usuario,DataGridViewRowCollection vestidos)
+        {
+            int id = UltimaNota();
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand("Agregar_Nota", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("Id_Nota", id);
+                cmd.Parameters.AddWithValue("Nombre_Cliente", cliente);
+                cmd.Parameters.AddWithValue("Telefono", telefono);
+                cmd.Parameters.AddWithValue("Descuento", descuento);
+                cmd.Parameters.AddWithValue("Fecha_Renta", renta.ToString("yyyy/MM/dd HH:mm:ss"));
+                cmd.Parameters.AddWithValue("Fecha_Evento", evento.Date);
+                cmd.Parameters.AddWithValue("Costo", costo);
+                cmd.Parameters.AddWithValue("Anticipo", anticipo);
+                cmd.Parameters.AddWithValue("Resto", resto);
+                cmd.Parameters.AddWithValue("Id_Usuario", usuario);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+
+                foreach (DataGridViewRow r in vestidos)
+                {
+                    cmd = new SqlCommand("Agregar_VestidoGenera", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("dia_entrega", evento.Date);
+                    cmd.Parameters.AddWithValue("Id_Vestido", r.Cells["Codigo"].Value);
+                    cmd.Parameters.AddWithValue("Id_Nota", id);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+
+                MessageBox.Show("Nota Registrada");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
     }
 }

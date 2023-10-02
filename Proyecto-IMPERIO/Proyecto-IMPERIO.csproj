@@ -75,6 +75,12 @@
     <Compile Include="cuCrudVestidos.Designer.cs">
       <DependentUpon>cuCrudVestidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="cuNotas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="cuNotas.Designer.cs">
+      <DependentUpon>cuNotas.cs</DependentUpon>
+    </Compile>
     <Compile Include="cuPuntoVenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     <Compile Include="SQLControl.cs" />
     <EmbeddedResource Include="cuCrudVestidos.resx">
       <DependentUpon>cuCrudVestidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cuNotas.resx">
+      <DependentUpon>cuNotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="cuPuntoVenta.resx">
       <DependentUpon>cuPuntoVenta.cs</DependentUpon>

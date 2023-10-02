@@ -31,5 +31,10 @@ namespace Proyecto_IMPERIO
         {
             cuPuntoVenta1.BringToFront();
         }
+
+        private void listaDeNotasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cuNotas1.BringToFront();
+        }
     }
 }

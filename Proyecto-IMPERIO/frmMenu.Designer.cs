@@ -37,6 +37,7 @@
             this.listaDeNotasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuCrudVestidos1 = new Proyecto_IMPERIO.cuCrudVestidos();
             this.cuPuntoVenta1 = new Proyecto_IMPERIO.cuPuntoVenta();
+            this.cuNotas1 = new Proyecto_IMPERIO.cuNotas();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,15 +87,16 @@
             // nuevaNotaToolStripMenuItem
             // 
             this.nuevaNotaToolStripMenuItem.Name = "nuevaNotaToolStripMenuItem";
-            this.nuevaNotaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nuevaNotaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nuevaNotaToolStripMenuItem.Text = "Nueva Nota";
             this.nuevaNotaToolStripMenuItem.Click += new System.EventHandler(this.nuevaNotaToolStripMenuItem_Click);
             // 
             // listaDeNotasToolStripMenuItem
             // 
             this.listaDeNotasToolStripMenuItem.Name = "listaDeNotasToolStripMenuItem";
-            this.listaDeNotasToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.listaDeNotasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listaDeNotasToolStripMenuItem.Text = "Lista de Notas";
+            this.listaDeNotasToolStripMenuItem.Click += new System.EventHandler(this.listaDeNotasToolStripMenuItem_Click);
             // 
             // cuCrudVestidos1
             // 
@@ -110,11 +112,19 @@
             this.cuPuntoVenta1.Size = new System.Drawing.Size(870, 485);
             this.cuPuntoVenta1.TabIndex = 1;
             // 
+            // cuNotas1
+            // 
+            this.cuNotas1.Location = new System.Drawing.Point(6, 27);
+            this.cuNotas1.Name = "cuNotas1";
+            this.cuNotas1.Size = new System.Drawing.Size(870, 485);
+            this.cuNotas1.TabIndex = 2;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 514);
+            this.Controls.Add(this.cuNotas1);
             this.Controls.Add(this.cuCrudVestidos1);
             this.Controls.Add(this.cuPuntoVenta1);
             this.Controls.Add(this.msMenu);
@@ -141,5 +151,6 @@
         private System.Windows.Forms.ToolStripMenuItem nuevaNotaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaDeNotasToolStripMenuItem;
         private cuPuntoVenta cuPuntoVenta1;
+        private cuNotas cuNotas1;
     }
 }
