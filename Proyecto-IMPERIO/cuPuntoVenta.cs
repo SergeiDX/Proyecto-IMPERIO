@@ -62,15 +62,11 @@ namespace Proyecto_IMPERIO
 
         private void dgvVestidos_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            tbTotal.Text = calcularTotal().ToString();
+            tbImporte.Text = (calcularTotal() - ((calcularTotal() * nudDescuento.Value) / 100)).ToString();
+
         }
 
         private void dgvVestidos_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            tbTotal.Text = calcularTotal().ToString();
-        }
-
-        private void tbTotal_TextChanged(object sender, EventArgs e)
         {
             tbImporte.Text = (calcularTotal() - ((calcularTotal() * nudDescuento.Value) / 100)).ToString();
         }
@@ -87,7 +83,23 @@ namespace Proyecto_IMPERIO
 
         private void tbAnticipo_TextChanged(object sender, EventArgs e)
         {
-            tbResto.Text = (Convert.ToDouble(tbImporte.Text) - Convert.ToDouble(tbAnticipo.Text)).ToString();
+            if(tbAnticipo.Text!="")
+                tbResto.Text = (Convert.ToDouble(tbImporte.Text) - Convert.ToDouble(tbAnticipo.Text)).ToString();
+        }
+
+        private void btnPagar_Click(object sender, EventArgs e)
+        {
+            if(dgvVestidos.Rows.Count != 0)
+            {
+                con.RegistrarNota(tbCliente.Text, tbTelefono.Text, nudDescuento.Value, DateTime.Now, dtpFecha.Value, tbImporte.Text, tbAnticipo.Text, tbResto.Text, 1, dgvVestidos.Rows);
+                while(dgvVestidos.RowCount != 0)
+                    dgvVestidos.Rows.RemoveAt(0);
+                tbAnticipo.Text = "0";
+                nudDescuento.Value = 0;
+                tbCliente.Text = "";
+                tbTelefono.Text = "";
+                dtpFecha.Value = DateTime.Now;
+            }
         }
     }
 }
