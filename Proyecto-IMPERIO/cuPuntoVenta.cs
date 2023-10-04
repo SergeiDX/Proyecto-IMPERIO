@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace Proyecto_IMPERIO
 {
@@ -89,7 +90,12 @@ namespace Proyecto_IMPERIO
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            if(dgvVestidos.Rows.Count != 0)
+            printDocument1 = new PrintDocument();
+            printDocument1.PrinterSettings = new PrinterSettings();
+            printDocument1.PrintPage += Imprimir;
+            printDocument1.Print();
+
+            /*if (dgvVestidos.Rows.Count != 0)
             {
                 con.RegistrarNota(tbCliente.Text, tbTelefono.Text, nudDescuento.Value, DateTime.Now, dtpFecha.Value, tbImporte.Text, tbAnticipo.Text, tbResto.Text, 1, dgvVestidos.Rows);
                 while(dgvVestidos.RowCount != 0)
@@ -99,7 +105,45 @@ namespace Proyecto_IMPERIO
                 tbCliente.Text = "";
                 tbTelefono.Text = "";
                 dtpFecha.Value = DateTime.Now;
-            }
+            }*/
+        }
+
+        private void Imprimir(object sender, PrintPageEventArgs e)
+        {
+            string costo = dgvVestidos.SelectedRows[0].Cells["Costo"].Value.ToString();
+            // int aa = (int)Convert.ToInt32(tbTotal.Text);
+
+          
+
+            // int resultadoDescuento = Convert.ToInt32(tbTotal.Text) - Convert.ToInt32(tbImporte.Text);
+            // int resultadoDescuento = int.Parse(tbTotal.Text) - int.Parse(tbImporte.Text);
+
+            Font font = new Font("Arial", 9, FontStyle.Regular, GraphicsUnit.Point);
+            Font font2 = new Font("Arial", 5, FontStyle.Regular, GraphicsUnit.Point);
+            Font font3 = new Font("Arial", 7, FontStyle.Regular, GraphicsUnit.Point);
+
+
+            int width = 380;
+            int y = 20;
+            e.Graphics.DrawString("         RENTA DE VESTIDOS IMPERIO", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+
+            e.Graphics.DrawString("                     V. Carranza #146 Zona Centro Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("Usuario: ZZZZZZ               Fecha: "+DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+    
+            e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+
+            e.Graphics.DrawString("    Cliente: " + tbCliente.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Telefono: " + tbTelefono.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Total: $" + tbImporte.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Fecha de renta: " + dtpFecha.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Fecha de evento: " + "FechaPendiente", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Costo vestido: $" + costo, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Anticipo: $" + tbAnticipo.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("    Resto: $" + tbResto.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+
+            e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("¡Gracias por su preferencia vuelva pronto!", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+
         }
     }
 }
