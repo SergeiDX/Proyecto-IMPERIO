@@ -110,39 +110,80 @@ namespace Proyecto_IMPERIO
 
         private void Imprimir(object sender, PrintPageEventArgs e)
         {
-            string costo = dgvVestidos.SelectedRows[0].Cells["Costo"].Value.ToString();
+            
+            
             // int aa = (int)Convert.ToInt32(tbTotal.Text);
 
-          
 
-            // int resultadoDescuento = Convert.ToInt32(tbTotal.Text) - Convert.ToInt32(tbImporte.Text);
-            // int resultadoDescuento = int.Parse(tbTotal.Text) - int.Parse(tbImporte.Text);
-
+            /*OpenFileDialog ofd = new OpenFileDialog();
+            string foto = ofd.FileName;
+            foto = "imagenes/Vestido.png";
+             int resultadoDescuento = Convert.ToInt32(tbTotal.Text) - Convert.ToInt32(tbImporte.Text);
+             int resultadoDescuento = int.Parse(tbTotal.Text) - int.Parse(tbImporte.Text);*/
             Font font = new Font("Arial", 9, FontStyle.Regular, GraphicsUnit.Point);
-            Font font2 = new Font("Arial", 5, FontStyle.Regular, GraphicsUnit.Point);
+            Font font4 = new Font("Tw Cen MT", 13, FontStyle.Bold, GraphicsUnit.Point);
+            Font font2 = new Font("Arial", 6, FontStyle.Regular, GraphicsUnit.Point);
             Font font3 = new Font("Arial", 7, FontStyle.Regular, GraphicsUnit.Point);
+
+
+
+
+            /*Image newImage = Image.FromFile(foto);
+            float x = 5.0F;
+            float y2 = 5.0F;
+            float width2 = 250.0F;
+            float height = 125.0F;
+            e.Graphics.DrawImage(image:newImage,x,y2,width2,height);
+            e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));*/
+
+
 
 
             int width = 380;
             int y = 20;
-            e.Graphics.DrawString("         RENTA DE VESTIDOS IMPERIO", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            //TITULO
+            e.Graphics.DrawString("  RENTA DE VESTIDOS IMPERIO", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("              V. Carranza #146 Zona Centro Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("Usuario:" +"\t\t\t\t"+ DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
-            e.Graphics.DrawString("                     V. Carranza #146 Zona Centro Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("Usuario: ZZZZZZ               Fecha: "+DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-    
-            e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                //SEPARADOR
+                e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
-            e.Graphics.DrawString("    Cliente: " + tbCliente.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Telefono: " + tbTelefono.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Total: $" + tbImporte.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Fecha de renta: " + dtpFecha.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Fecha de evento: " + "FechaPendiente", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Costo vestido: $" + costo, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Anticipo: $" + tbAnticipo.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("    Resto: $" + tbResto.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                //BODY
+                e.Graphics.DrawString("    Cliente: " + tbCliente.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("    Telefono: " + tbTelefono.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("    Fecha de evento: " + dtpFecha.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
-            e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("¡Gracias por su preferencia vuelva pronto!", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("    Descripcion"+"\t\tCosto", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+
+            //CARRITO COMPRA
+            foreach (DataGridViewRow dgvrenglon in dgvVestidos.Rows)
+                {
+                    
+                    string NombreVestido = dgvrenglon.Cells["Descripcion"].Value.ToString();
+                    string CostoVestido = dgvrenglon.Cells["Costo"].Value.ToString();
+                 //string output = ("    "+NombreVestido+"\t   $"+CostoVestido);
+                    
+                    
+                    
+                    e.Graphics.DrawString("    " + NombreVestido + "\t\t$" + CostoVestido, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            
+
+                }
+
+                e.Graphics.DrawString("    Subtotal: $" + tbImporte.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("    Anticipo: $" + tbAnticipo.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("    Total a pagar: $" + tbResto.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                                
+                //SEPARADOR
+                e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("  ¡Gracias por su preferencia vuelva pronto!", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            
 
         }
     }
