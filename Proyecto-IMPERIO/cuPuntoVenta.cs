@@ -140,15 +140,21 @@ namespace Proyecto_IMPERIO
             e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
             e.Graphics.DrawString("  ", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));*/
 
+            
+           
 
 
 
+
+
+            
             int width = 380;
             int y = 20;
             //TITULO
             e.Graphics.DrawString("  RENTA DE VESTIDOS IMPERIO", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-                e.Graphics.DrawString("              V. Carranza #146 Zona Centro Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-                e.Graphics.DrawString("Usuario:" +"\t\t\t\t"+ DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("              V. Carranza #146 Zona Centro Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            
+            e.Graphics.DrawString("Usuario: "+Properties.Settings.Default.usuario+ "\t\t\t" + DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
                 //SEPARADOR
                 e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));

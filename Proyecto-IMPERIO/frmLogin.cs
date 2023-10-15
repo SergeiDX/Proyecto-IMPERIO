@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +16,10 @@ namespace Proyecto_IMPERIO
     public partial class frmLogin : Form
     {
         SQLControl sqLControl = new SQLControl();
+        
+        
+        
+        
         public frmLogin()
         {
             InitializeComponent();
@@ -21,10 +27,13 @@ namespace Proyecto_IMPERIO
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            
             int resultado = sqLControl.login(txtUser.Text, txtPassword.Text);
-
+            Properties.Settings.Default.usuario = txtUser.Text;
+            
             if (resultado == 1)
             {
+                
                 frmMenu menu = new frmMenu();
                 Hide();
                 menu.Show();

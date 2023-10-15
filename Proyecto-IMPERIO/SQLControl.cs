@@ -2,14 +2,17 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static Proyecto_IMPERIO.SQLControl;
 
 namespace Proyecto_IMPERIO
 {
     internal class SQLControl
     {
-        public SqlConnection cnn =
-            new SqlConnection(@"Server=DESKTOP-6PGHB34;Database=Imperio_Vestidos;Integrated Security=True;");
-
+        
+        
+        public SqlConnection cnn =       
+            new SqlConnection(@"Server=DESKTOP-EUB75BK;Database=Imperio_Vestidos;Integrated Security=True;");
+        
 
         public DataTable Query(string query)
         {
@@ -24,10 +27,10 @@ namespace Proyecto_IMPERIO
 
         public int login(string usuario, string pass)
         {
+            
             try
             {
                 cnn.Open();
-
                 SqlCommand cmd = new SqlCommand("spLogin", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -35,7 +38,6 @@ namespace Proyecto_IMPERIO
                 cmd.Parameters.AddWithValue("pass", pass);
 
                 SqlDataReader dr = cmd.ExecuteReader();
-
                 if (dr.Read())
                 {
                     return dr.GetInt32(0);
@@ -46,11 +48,15 @@ namespace Proyecto_IMPERIO
                 MessageBox.Show(e.Message);
             }
             finally
-            {
+            {   
                 cnn.Close();
             }
             return -1;
+
         }
+        
+
+
 
         public void AgregarVestido(string id,string imagen,string talla,string precio,string descripcion)
         {
