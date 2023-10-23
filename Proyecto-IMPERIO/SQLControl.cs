@@ -11,7 +11,7 @@ namespace Proyecto_IMPERIO
         
         
         public SqlConnection cnn =       
-            new SqlConnection(@"Server=DESKTOP-EUB75BK;Database=Imperio_Vestidos;Integrated Security=True;");
+            new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Imperio_Vestidos;Integrated Security=True;");
         
 
         public DataTable Query(string query)
@@ -203,6 +203,30 @@ namespace Proyecto_IMPERIO
             {
                 cnn.Close();
             }
+        }
+
+        public void EliminarNota(string id)
+        {
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand("Borrar_Nota", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("Id_Nota", id);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Se elimino la nota correctamente");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
         }
     }
 }

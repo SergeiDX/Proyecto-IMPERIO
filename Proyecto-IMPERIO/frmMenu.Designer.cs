@@ -35,9 +35,11 @@
             this.notasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevaNotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaDeNotasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cuCrudVestidos1 = new Proyecto_IMPERIO.cuCrudVestidos();
-            this.cuPuntoVenta1 = new Proyecto_IMPERIO.cuPuntoVenta();
+            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calendarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuNotas1 = new Proyecto_IMPERIO.cuNotas();
+            this.cuCrudVestidos1 = new Proyecto_IMPERIO.cuCrudVestidos();
+            this.cuCalendario1 = new Proyecto_IMPERIO.cuCalendario();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +47,8 @@
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vestidosToolStripMenuItem,
-            this.notasToolStripMenuItem});
+            this.notasToolStripMenuItem,
+            this.consultasToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(888, 24);
@@ -87,46 +90,61 @@
             // nuevaNotaToolStripMenuItem
             // 
             this.nuevaNotaToolStripMenuItem.Name = "nuevaNotaToolStripMenuItem";
-            this.nuevaNotaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevaNotaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.nuevaNotaToolStripMenuItem.Text = "Nueva Nota";
             this.nuevaNotaToolStripMenuItem.Click += new System.EventHandler(this.nuevaNotaToolStripMenuItem_Click);
             // 
             // listaDeNotasToolStripMenuItem
             // 
             this.listaDeNotasToolStripMenuItem.Name = "listaDeNotasToolStripMenuItem";
-            this.listaDeNotasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaDeNotasToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.listaDeNotasToolStripMenuItem.Text = "Lista de Notas";
             this.listaDeNotasToolStripMenuItem.Click += new System.EventHandler(this.listaDeNotasToolStripMenuItem_Click);
             // 
-            // cuCrudVestidos1
+            // consultasToolStripMenuItem
             // 
-            this.cuCrudVestidos1.Location = new System.Drawing.Point(6, 27);
-            this.cuCrudVestidos1.Name = "cuCrudVestidos1";
-            this.cuCrudVestidos1.Size = new System.Drawing.Size(870, 485);
-            this.cuCrudVestidos1.TabIndex = 1;
+            this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.calendarioToolStripMenuItem});
+            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.consultasToolStripMenuItem.Text = "Consultas";
             // 
-            // cuPuntoVenta1
+            // calendarioToolStripMenuItem
             // 
-            this.cuPuntoVenta1.Location = new System.Drawing.Point(6, 27);
-            this.cuPuntoVenta1.Name = "cuPuntoVenta1";
-            this.cuPuntoVenta1.Size = new System.Drawing.Size(870, 485);
-            this.cuPuntoVenta1.TabIndex = 1;
+            this.calendarioToolStripMenuItem.Name = "calendarioToolStripMenuItem";
+            this.calendarioToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.calendarioToolStripMenuItem.Text = "Calendario";
+            this.calendarioToolStripMenuItem.Click += new System.EventHandler(this.calendarioToolStripMenuItem_Click);
             // 
             // cuNotas1
             // 
             this.cuNotas1.Location = new System.Drawing.Point(6, 27);
             this.cuNotas1.Name = "cuNotas1";
-            this.cuNotas1.Size = new System.Drawing.Size(870, 485);
+            this.cuNotas1.Size = new System.Drawing.Size(870, 580);
             this.cuNotas1.TabIndex = 2;
+            // 
+            // cuCrudVestidos1
+            // 
+            this.cuCrudVestidos1.Location = new System.Drawing.Point(6, 27);
+            this.cuCrudVestidos1.Name = "cuCrudVestidos1";
+            this.cuCrudVestidos1.Size = new System.Drawing.Size(870, 580);
+            this.cuCrudVestidos1.TabIndex = 1;
+            // 
+            // cuCalendario1
+            // 
+            this.cuCalendario1.Location = new System.Drawing.Point(6, 27);
+            this.cuCalendario1.Name = "cuCalendario1";
+            this.cuCalendario1.Size = new System.Drawing.Size(870, 580);
+            this.cuCalendario1.TabIndex = 3;
             // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(888, 514);
+            this.ClientSize = new System.Drawing.Size(888, 609);
+            this.Controls.Add(this.cuCalendario1);
             this.Controls.Add(this.cuNotas1);
             this.Controls.Add(this.cuCrudVestidos1);
-            this.Controls.Add(this.cuPuntoVenta1);
             this.Controls.Add(this.msMenu);
             this.MainMenuStrip = this.msMenu;
             this.Name = "frmMenu";
@@ -150,7 +168,9 @@
         private System.Windows.Forms.ToolStripMenuItem notasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevaNotaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaDeNotasToolStripMenuItem;
-        private cuPuntoVenta cuPuntoVenta1;
         private cuNotas cuNotas1;
+        private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem calendarioToolStripMenuItem;
+        private cuCalendario cuCalendario1;
     }
 }

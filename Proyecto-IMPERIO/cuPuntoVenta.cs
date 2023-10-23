@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 
@@ -21,6 +16,34 @@ namespace Proyecto_IMPERIO
             con = new SQLControl();
             InitializeComponent();
         }
+
+        public cuPuntoVenta(int nota)
+        {
+            con = new SQLControl();
+            InitializeComponent();
+            DataTable datos = con.Query("select v.Id_vestido as id, v.descripcion,v.precio,v.imagen from genera as g, vestidos as v where g.Id_nota="+nota.ToString()+" and g.id_vestido = v.Id_vestido");
+            foreach(DataRow fila in datos.Rows)
+            {
+                dgvVestidos.Rows.Add(fila[0], fila[1], fila[2], fila[3]);
+            }
+            dgvVestidos.Columns[4].Visible = false;
+
+            datos = con.Query("select Nombre_Cliente as nombre, telefono as num, descuento,fecha_evento as fecha,anticipo from nota where id_nota = "+nota.ToString());
+            tbAnticipo.Text = datos.Rows[0]["anticipo"].ToString();
+            tbAnticipo.Enabled = false;
+            tbCliente.Text = datos.Rows[0]["nombre"].ToString();
+            tbCliente.Enabled = false;
+            tbCodigo.Enabled = false;
+            tbTelefono.Text = datos.Rows[0]["num"].ToString();
+            tbTelefono.Enabled = false;
+            nudDescuento.Value = Convert.ToInt32(datos.Rows[0]["descuento"]);
+            nudDescuento.Enabled = false;
+            dtpFecha.Value = (DateTime)datos.Rows[0]["fecha"];
+            dtpFecha.Enabled = false;
+            btnPagar.Text = "Imprimir";
+        }
+
+
 
         private void tbCodigo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -90,22 +113,25 @@ namespace Proyecto_IMPERIO
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            printDocument1 = new PrintDocument();
-            printDocument1.PrinterSettings = new PrinterSettings();
-            printDocument1.PrintPage += Imprimir;
-            printDocument1.Print();
-
-            /*if (dgvVestidos.Rows.Count != 0)
+            if (dgvVestidos.Rows.Count != 0)
             {
-                con.RegistrarNota(tbCliente.Text, tbTelefono.Text, nudDescuento.Value, DateTime.Now, dtpFecha.Value, tbImporte.Text, tbAnticipo.Text, tbResto.Text, 1, dgvVestidos.Rows);
-                while(dgvVestidos.RowCount != 0)
-                    dgvVestidos.Rows.RemoveAt(0);
-                tbAnticipo.Text = "0";
-                nudDescuento.Value = 0;
-                tbCliente.Text = "";
-                tbTelefono.Text = "";
-                dtpFecha.Value = DateTime.Now;
-            }*/
+                printDocument1 = new PrintDocument();
+                printDocument1.PrinterSettings = new PrinterSettings();
+                printDocument1.PrintPage += Imprimir;
+                printDocument1.Print();
+
+                if(btnPagar.Text != "Imprimir")
+                {
+                    con.RegistrarNota(tbCliente.Text, tbTelefono.Text, nudDescuento.Value, DateTime.Now, dtpFecha.Value, tbImporte.Text, tbAnticipo.Text, tbResto.Text, 1, dgvVestidos.Rows);
+                    while (dgvVestidos.RowCount != 0)
+                        dgvVestidos.Rows.RemoveAt(0);
+                    tbAnticipo.Text = "0";
+                    nudDescuento.Value = 0;
+                    tbCliente.Text = "";
+                    tbTelefono.Text = "";
+                    dtpFecha.Value = DateTime.Now;
+                }
+            }
         }
 
         private void Imprimir(object sender, PrintPageEventArgs e)

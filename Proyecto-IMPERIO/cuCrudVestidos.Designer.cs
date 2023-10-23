@@ -48,7 +48,7 @@
             this.dgvVestidos.Name = "dgvVestidos";
             this.dgvVestidos.ReadOnly = true;
             this.dgvVestidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVestidos.Size = new System.Drawing.Size(650, 405);
+            this.dgvVestidos.Size = new System.Drawing.Size(650, 500);
             this.dgvVestidos.TabIndex = 0;
             // 
             // btnAgregar
@@ -110,7 +110,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvVestidos);
             this.Name = "cuCrudVestidos";
-            this.Size = new System.Drawing.Size(870, 485);
+            this.Size = new System.Drawing.Size(870, 580);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVestidos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
