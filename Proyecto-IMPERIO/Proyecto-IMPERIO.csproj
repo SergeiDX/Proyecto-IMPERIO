@@ -81,6 +81,12 @@
     <Compile Include="cuCrudVestidos.Designer.cs">
       <DependentUpon>cuCrudVestidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="cuEntregas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="cuEntregas.Designer.cs">
+      <DependentUpon>cuEntregas.cs</DependentUpon>
+    </Compile>
     <Compile Include="cuNotas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +104,12 @@
     </Compile>
     <Compile Include="frmCRUDusuarios.Designer.cs">
       <DependentUpon>frmCRUDusuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFechaEntrega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFechaEntrega.Designer.cs">
+      <DependentUpon>frmFechaEntrega.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -132,6 +144,9 @@
     <EmbeddedResource Include="cuCrudVestidos.resx">
       <DependentUpon>cuCrudVestidos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="cuEntregas.resx">
+      <DependentUpon>cuEntregas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="cuNotas.resx">
       <DependentUpon>cuNotas.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCRUDusuarios.resx">
       <DependentUpon>frmCRUDusuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFechaEntrega.resx">
+      <DependentUpon>frmFechaEntrega.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

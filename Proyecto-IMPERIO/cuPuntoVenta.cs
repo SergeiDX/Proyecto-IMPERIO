@@ -113,7 +113,59 @@ namespace Proyecto_IMPERIO
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            if (dgvVestidos.Rows.Count != 0)
+            bool ocupado = false;
+            foreach(DataGridViewRow fila in dgvVestidos.Rows)
+            {
+                string vestido = fila.Cells[0].Value.ToString();
+
+                string diasemana = dtpFecha.Value.DayOfWeek.ToString();
+                int diferencia1 = 0;
+                int diferencia2 = 6;
+                switch (diasemana)
+                {
+                    case "Monday":
+                        diferencia1 = -1;
+                        diferencia2 = 5;
+                        break;
+
+                    case "Tuesday":
+                        diferencia1 = -2;
+                        diferencia2 = 4;
+                        break;
+
+                    case "Wednesday":
+                        diferencia1 = -3;
+                        diferencia2 = 3;
+                        break;
+
+                    case "Thursday":
+                        diferencia1 = -4;
+                        diferencia2 = 2;
+                        break;
+
+                    case "Friday":
+                        diferencia1 = -5;
+                        diferencia2 = 1;
+                        break;
+
+                    case "Saturday":
+                        diferencia1 = -6;
+                        diferencia2 = 0;
+                        break;
+                }
+                DateTime fInicio = dtpFecha.Value.AddDays(diferencia1);
+                DateTime fFin = dtpFecha.Value.AddDays(diferencia2);
+
+
+                if (con.Query("select n.Id_nota from nota as n, Genera as g where n.Id_nota=g.Id_nota and g.Id_vestido = " + vestido + "and n.fecha_evento between '" + fInicio.ToString("yyyy/MM/dd 00:00:00") + "' and '" + fFin.ToString("yyyy/MM/dd 23:59:59") + "'").Rows.Count !=0)
+                {
+                    ocupado = true;
+                    MessageBox.Show("El vestido " + fila.Cells[1].Value.ToString() + " esta rentado en esa semana");
+                    break;
+                }
+            }
+
+            if (dgvVestidos.Rows.Count != 0 && !ocupado)
             {
                 printDocument1 = new PrintDocument();
                 printDocument1.PrinterSettings = new PrinterSettings();
