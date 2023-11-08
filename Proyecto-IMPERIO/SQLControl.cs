@@ -228,5 +228,30 @@ namespace Proyecto_IMPERIO
             }
 
         }
+
+        public void ActualizarGenera(DateTime fecha, string vestido, string nota)
+        {
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand("Actualizar_VestidoGenera", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("Id_nota", nota);
+                cmd.Parameters.AddWithValue("Id_vestido", vestido);
+                cmd.Parameters.AddWithValue("dia_entrega", fecha);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Se actualizo la fecha correctamente");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
     }
 }

@@ -62,5 +62,11 @@ namespace Proyecto_IMPERIO
             Controls.Add(puntoVenta);
             Controls[Controls.IndexOf(puntoVenta)].BringToFront();
         }
+
+        private void entregasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Controls.Remove(puntoVenta);
+            cuEntregas1.BringToFront();
+        }
     }
 }
