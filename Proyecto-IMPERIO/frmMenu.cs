@@ -10,13 +10,13 @@ namespace Proyecto_IMPERIO
         {
             InitializeComponent();
             nuevaNota();
-            cuNotas1.Menu = this;
+            cuNotas2.Menu = this;
         }
 
         private void listaDeVestidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Controls.Remove(puntoVenta);
-            cuCrudVestidos1.BringToFront();
+            cuCrudVestidos2.BringToFront();
         }
 
         private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
@@ -26,7 +26,7 @@ namespace Proyecto_IMPERIO
 
         private void agregarVestidoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmVestido vestido = new frmVestido(cuCrudVestidos1);
+            frmVestido vestido = new frmVestido(cuCrudVestidos2);
             vestido.Show();
         }
 
@@ -38,7 +38,7 @@ namespace Proyecto_IMPERIO
         private void listaDeNotasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Controls.Remove(puntoVenta);
-            cuNotas1.BringToFront();
+            cuNotas2.BringToFront();
         }
 
         private void calendarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,5 +68,12 @@ namespace Proyecto_IMPERIO
             Controls.Remove(puntoVenta);
             cuEntregas1.BringToFront();
         }
+
+        private void frmMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

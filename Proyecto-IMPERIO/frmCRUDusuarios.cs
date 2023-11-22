@@ -152,5 +152,7 @@ namespace Proyecto_IMPERIO
             txtusuario.Text = dataGridView1.SelectedCells[1].Value.ToString();
             txtpass.Text = dataGridView1.SelectedCells[2].Value.ToString();
         }
+
+       
     }
 }

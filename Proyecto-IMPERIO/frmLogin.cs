@@ -62,5 +62,7 @@ namespace Proyecto_IMPERIO
             frmVenta.Show();
             Hide();
         }
+
+       
     }
 }
