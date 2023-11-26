@@ -6,11 +6,13 @@ namespace Proyecto_IMPERIO
     public partial class frmMenu : Form
     {
         cuPuntoVenta puntoVenta;
-        public frmMenu()
+        frmLogin login;
+        public frmMenu(frmLogin login)
         {
             InitializeComponent();
             nuevaNota();
             cuNotas2.Menu = this;
+            this.login = login;
         }
 
         private void listaDeVestidosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -21,7 +23,7 @@ namespace Proyecto_IMPERIO
 
         private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            login.Show();
         }
 
         private void agregarVestidoToolStripMenuItem_Click(object sender, EventArgs e)

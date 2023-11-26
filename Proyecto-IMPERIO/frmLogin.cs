@@ -34,7 +34,7 @@ namespace Proyecto_IMPERIO
             if (resultado == 1)
             {
                 
-                frmMenu menu = new frmMenu();
+                frmMenu menu = new frmMenu(this);
                 Hide();
                 menu.Show();
             }

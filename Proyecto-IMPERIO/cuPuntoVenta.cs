@@ -102,88 +102,116 @@ namespace Proyecto_IMPERIO
 
         private void tbImporte_TextChanged(object sender, EventArgs e)
         {
-            tbResto.Text = (Convert.ToDouble(tbImporte.Text) - Convert.ToDouble(tbAnticipo.Text)).ToString();
+            try
+            {
+                double ant = 0;
+                try
+                {
+                    ant = Convert.ToDouble(tbAnticipo.Text);
+                }catch(Exception ex)
+                {
+
+                }
+                tbResto.Text = (Convert.ToDouble(tbImporte.Text) - ant).ToString();
+            }catch(Exception ex)
+            {
+
+            }
         }
 
         private void tbAnticipo_TextChanged(object sender, EventArgs e)
         {
-            if(tbAnticipo.Text!="")
-                tbResto.Text = (Convert.ToDouble(tbImporte.Text) - Convert.ToDouble(tbAnticipo.Text)).ToString();
+            try
+            {
+                if (tbAnticipo.Text != "")
+                    tbResto.Text = (Convert.ToDouble(tbImporte.Text) - Convert.ToDouble(tbAnticipo.Text)).ToString();
+            }catch(Exception ex)
+            {
+
+            }
         }
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
             bool ocupado = false;
-            foreach(DataGridViewRow fila in dgvVestidos.Rows)
+            if (tbAnticipo.Text != "" && tbCliente.Text != "" && tbTelefono.Text != "")
             {
-                string vestido = fila.Cells[0].Value.ToString();
-
-                string diasemana = dtpFecha.Value.DayOfWeek.ToString();
-                int diferencia1 = 0;
-                int diferencia2 = 6;
-                switch (diasemana)
+                if (btnPagar.Text != "Imprimir")
                 {
-                    case "Monday":
-                        diferencia1 = -1;
-                        diferencia2 = 5;
-                        break;
+                    foreach (DataGridViewRow fila in dgvVestidos.Rows)
+                    {
+                        string vestido = fila.Cells[0].Value.ToString();
 
-                    case "Tuesday":
-                        diferencia1 = -2;
-                        diferencia2 = 4;
-                        break;
+                        string diasemana = dtpFecha.Value.DayOfWeek.ToString();
+                        int diferencia1 = 0;
+                        int diferencia2 = 6;
+                        switch (diasemana)
+                        {
+                            case "Monday":
+                                diferencia1 = -1;
+                                diferencia2 = 5;
+                                break;
 
-                    case "Wednesday":
-                        diferencia1 = -3;
-                        diferencia2 = 3;
-                        break;
+                            case "Tuesday":
+                                diferencia1 = -2;
+                                diferencia2 = 4;
+                                break;
 
-                    case "Thursday":
-                        diferencia1 = -4;
-                        diferencia2 = 2;
-                        break;
+                            case "Wednesday":
+                                diferencia1 = -3;
+                                diferencia2 = 3;
+                                break;
 
-                    case "Friday":
-                        diferencia1 = -5;
-                        diferencia2 = 1;
-                        break;
+                            case "Thursday":
+                                diferencia1 = -4;
+                                diferencia2 = 2;
+                                break;
 
-                    case "Saturday":
-                        diferencia1 = -6;
-                        diferencia2 = 0;
-                        break;
+                            case "Friday":
+                                diferencia1 = -5;
+                                diferencia2 = 1;
+                                break;
+
+                            case "Saturday":
+                                diferencia1 = -6;
+                                diferencia2 = 0;
+                                break;
+                        }
+                        DateTime fInicio = dtpFecha.Value.AddDays(diferencia1);
+                        DateTime fFin = dtpFecha.Value.AddDays(diferencia2);
+
+
+                        if (con.Query("select n.Id_nota from nota as n, Genera as g where n.Id_nota=g.Id_nota and g.Id_vestido = " + vestido + "and n.fecha_evento between '" + fInicio.ToString("yyyy/MM/dd 00:00:00") + "' and '" + fFin.ToString("yyyy/MM/dd 23:59:59") + "'").Rows.Count != 0)
+                        {
+                            ocupado = true;
+                            MessageBox.Show("El vestido " + fila.Cells[1].Value.ToString() + " esta rentado en esa semana");
+                            break;
+                        }
+                    }
                 }
-                DateTime fInicio = dtpFecha.Value.AddDays(diferencia1);
-                DateTime fFin = dtpFecha.Value.AddDays(diferencia2);
 
-
-                if (con.Query("select n.Id_nota from nota as n, Genera as g where n.Id_nota=g.Id_nota and g.Id_vestido = " + vestido + "and n.fecha_evento between '" + fInicio.ToString("yyyy/MM/dd 00:00:00") + "' and '" + fFin.ToString("yyyy/MM/dd 23:59:59") + "'").Rows.Count !=0)
+                if (dgvVestidos.Rows.Count != 0 && !ocupado)
                 {
-                    ocupado = true;
-                    MessageBox.Show("El vestido " + fila.Cells[1].Value.ToString() + " esta rentado en esa semana");
-                    break;
+                    printDocument1 = new PrintDocument();
+                    printDocument1.PrinterSettings = new PrinterSettings();
+                    printDocument1.PrintPage += Imprimir;
+                    printDocument1.Print();
+
+                    if (btnPagar.Text != "Imprimir")
+                    {
+                        con.RegistrarNota(tbCliente.Text, tbTelefono.Text, nudDescuento.Value, DateTime.Now, dtpFecha.Value, tbImporte.Text, tbAnticipo.Text, tbResto.Text, 1, dgvVestidos.Rows);
+                        tbAnticipo.Text = "0";
+                        nudDescuento.Value = 0;
+                        tbCliente.Text = "";
+                        tbTelefono.Text = "";
+                        dtpFecha.Value = DateTime.Now;
+                        while (dgvVestidos.RowCount != 0)
+                            dgvVestidos.Rows.RemoveAt(0);
+
+                    }
                 }
             }
-
-            if (dgvVestidos.Rows.Count != 0 && !ocupado)
-            {
-                printDocument1 = new PrintDocument();
-                printDocument1.PrinterSettings = new PrinterSettings();
-                printDocument1.PrintPage += Imprimir;
-                printDocument1.Print();
-
-                if(btnPagar.Text != "Imprimir")
-                {
-                    con.RegistrarNota(tbCliente.Text, tbTelefono.Text, nudDescuento.Value, DateTime.Now, dtpFecha.Value, tbImporte.Text, tbAnticipo.Text, tbResto.Text, 1, dgvVestidos.Rows);
-                    while (dgvVestidos.RowCount != 0)
-                        dgvVestidos.Rows.RemoveAt(0);
-                    tbAnticipo.Text = "0";
-                    nudDescuento.Value = 0;
-                    tbCliente.Text = "";
-                    tbTelefono.Text = "";
-                    dtpFecha.Value = DateTime.Now;
-                }
-            }
+            else MessageBox.Show("Llena todos los campos");
         }
 
         private void Imprimir(object sender, PrintPageEventArgs e)
@@ -230,19 +258,19 @@ namespace Proyecto_IMPERIO
             int y = 20;
             //TITULO
             e.Graphics.DrawString("  RENTA DE VESTIDOS IMPERIO", font4, Brushes.Black, new Rectangle(0, y += 20, width, 20));
-            e.Graphics.DrawString("              V. Carranza #146 Zona Centro Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("  V. Carranza #146 Zona Centro  Monclova CP 25700", font2, Brushes.Black, new Rectangle(0, y += 20, width, 20));
             
-            e.Graphics.DrawString("Usuario: "+Properties.Settings.Default.usuario+ "\t\t\t" + DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+            e.Graphics.DrawString("Usuario: "+Properties.Settings.Default.usuario+ "        " + DateTime.Now, font3, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
                 //SEPARADOR
-                e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
                 //BODY
                 e.Graphics.DrawString("    Cliente: " + tbCliente.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
                 e.Graphics.DrawString("    Telefono: " + tbTelefono.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
                 e.Graphics.DrawString("    Fecha de evento: " + dtpFecha.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
-                e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
                 e.Graphics.DrawString("    Descripcion"+"\t\tCosto", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
             //CARRITO COMPRA
@@ -255,7 +283,7 @@ namespace Proyecto_IMPERIO
                     
                     
                     
-                    e.Graphics.DrawString("    " + NombreVestido + "\t\t$" + CostoVestido, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                    e.Graphics.DrawString("    " + NombreVestido + " $" + CostoVestido, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
             
 
                 }
@@ -265,7 +293,7 @@ namespace Proyecto_IMPERIO
                 e.Graphics.DrawString("    Total a pagar: $" + tbResto.Text, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
                                 
                 //SEPARADOR
-                e.Graphics.DrawString("=================================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
+                e.Graphics.DrawString("================================", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
                 e.Graphics.DrawString("  ¡Gracias por su preferencia vuelva pronto!", font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
             
 
