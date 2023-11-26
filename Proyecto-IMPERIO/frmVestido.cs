@@ -52,32 +52,42 @@ namespace Proyecto_IMPERIO
 
         private void btnAccion_Click(object sender, EventArgs e)
         {
-            if(btnAccion.Text == "Agregar")
+            if (tbCodigo.Text.Replace(" ", "") != "" && tbDescripcion.Text.Replace(" ", "") != "" && tbPrecio.Text.Replace(" ", "") != "" && tbTalla.Text.Replace(" ", "") != "" && pbFoto.ImageLocation != null)
             {
-                if (!cone.ExisteVestido(tbCodigo.Text))
+                try
                 {
-                    foto = "imagenes/" + tbCodigo.Text + ".png";
-                    pbFoto.Image.Save(foto);
-                    cone.AgregarVestido(tbCodigo.Text, foto, tbTalla.Text, tbPrecio.Text, tbDescripcion.Text);
-                    crud.LlenarVestidos();
-                    Close();
+                    if (btnAccion.Text == "Agregar")
+                    {
+                        if (!cone.ExisteVestido(tbCodigo.Text))
+                        {
+                            foto = "imagenes/" + tbCodigo.Text + ".png";
+                            pbFoto.Image.Save(foto);
+                            cone.AgregarVestido(tbCodigo.Text, foto, tbTalla.Text, tbPrecio.Text, tbDescripcion.Text);
+                            crud.LlenarVestidos();
+                            Close();
+                        }
+                        else
+                            MessageBox.Show("Ya existe un vestido con ese codigo");
+                    }
+                    else
+                    {
+                        foto = "imagenes/" + tbCodigo.Text + ".png";
+                        pbFoto.Image.Save(foto);
+                        cone.ActualizarVestido(tbCodigo.Text, foto, tbTalla.Text, tbPrecio.Text, tbDescripcion.Text);
+                        crud.LlenarVestidos();
+                        Close();
+                    }
                 }
-                else
-                    MessageBox.Show("Ya existe un vestido con ese codigo");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            else
-            {
-                foto = "imagenes/" + tbCodigo.Text + ".png";
-                pbFoto.Image.Save(foto);
-                cone.ActualizarVestido(tbCodigo.Text, foto, tbTalla.Text, tbPrecio.Text, tbDescripcion.Text);
-                crud.LlenarVestidos();
-                Close();
-            }
+            else MessageBox.Show("Llena todos los campos");
+
+            
         }
 
-        private void frmVestido_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

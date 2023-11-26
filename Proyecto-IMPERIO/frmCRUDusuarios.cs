@@ -70,7 +70,7 @@ namespace Proyecto_IMPERIO
             SQLControl.cnn.Open();
             SqlCommand cmd = new SqlCommand("Actualizar_Usuario", SQLControl.cnn);
             cmd.CommandType= CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Id_usuario", txtnombre.Text);
+            cmd.Parameters.AddWithValue("@Id_usuario", dataGridView1.SelectedRows[0].Cells[0].Value);
             cmd.Parameters.AddWithValue("@Nombre", txtusuario.Text);
             cmd.Parameters.AddWithValue("@Contrasenia", txtpass.Text);
 
@@ -94,7 +94,7 @@ namespace Proyecto_IMPERIO
             SQLControl.cnn.Open();
             SqlCommand cmd = new SqlCommand("Borrar_Usuario",SQLControl.cnn);
             cmd.CommandType=CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Id_usuario",txtnombre.Text);
+            cmd.Parameters.AddWithValue("@Id_usuario", dataGridView1.SelectedRows[0].Cells[0].Value);
 
             try
             {
@@ -113,7 +113,6 @@ namespace Proyecto_IMPERIO
 
         public void LimpiarCampos()
         {
-            txtnombre.Clear();
             txtusuario.Clear();
             txtpass.Clear();
         }
@@ -148,7 +147,6 @@ namespace Proyecto_IMPERIO
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtnombre.Text = dataGridView1.SelectedCells[0].Value.ToString();
             txtusuario.Text = dataGridView1.SelectedCells[1].Value.ToString();
             txtpass.Text = dataGridView1.SelectedCells[2].Value.ToString();
         }
